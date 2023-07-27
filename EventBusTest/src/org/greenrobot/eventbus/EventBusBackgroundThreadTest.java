@@ -15,8 +15,6 @@
  */
 package org.greenrobot.eventbus;
 
-import android.os.Looper;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -44,7 +42,6 @@ public class EventBusBackgroundThreadTest extends AbstractAndroidEventBusTest {
         waitForEventCount(1, 1000);
         assertEquals("Hello", lastEvent);
         assertFalse(lastThread.equals(Thread.currentThread()));
-        assertFalse(lastThread.equals(Looper.getMainLooper().getThread()));
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

@@ -64,7 +64,7 @@ public class TestRunnerActivity extends Activity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(TestFinishedEvent event) {
-        Test test = event.test;
+        TestResult test = event.test;
         String text = "<b>" + test.getDisplayName() + "</b><br/>" + //
                 test.getPrimaryResultMicros() + " micro seconds<br/>" + //
                 ((int) test.getPrimaryResultRate()) + "/s<br/>";
