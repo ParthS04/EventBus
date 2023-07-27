@@ -20,7 +20,8 @@ import org.greenrobot.eventbus.meta.SubscriberInfoIndex;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
+import static java.util.concurrent.Executors.*;
 
 /**
  * Creates EventBus instances with custom parameters and also allows to install a custom default EventBus instance.
@@ -28,7 +29,7 @@ import java.util.concurrent.Executors;
  */
 @SuppressWarnings("unused")
 public class EventBusBuilder {
-    private final static ExecutorService DEFAULT_EXECUTOR_SERVICE = Executors.newCachedThreadPool();
+    private final static ExecutorService DEFAULT_EXECUTOR_SERVICE = newCachedThreadPool();
 
     boolean logSubscriberExceptions = true;
     boolean logNoSubscriberMessages = true;
@@ -72,9 +73,9 @@ public class EventBusBuilder {
     }
 
     /**
-     * Fails if an subscriber throws an exception (default: false).
+     * Fails if a subscriber throws an exception (default: false).
      * <p/>
-     * Tip: Use this with BuildConfig.DEBUG to let the app crash in DEBUG mode (only). This way, you won't miss
+     * Tip: Use this with BuildConfig. DEBUG to let the app crash in DEBUG mode (only). This way, you won't miss
      * exceptions during development.
      */
     public EventBusBuilder throwSubscriberException(boolean throwSubscriberException) {
@@ -111,7 +112,7 @@ public class EventBusBuilder {
      * exclude subscriber classes from this check. Also disables checks for method modifiers (public, not static nor
      * abstract).
      */
-    public EventBusBuilder skipMethodVerificationFor(Class<?> clazz) {
+    public EventBusBuilder addSkipMethodVerificationFor(Class<?> clazz) {
         if (skipMethodVerificationForClasses == null) {
             skipMethodVerificationForClasses = new ArrayList<>();
         }

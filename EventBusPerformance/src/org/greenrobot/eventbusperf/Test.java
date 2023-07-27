@@ -16,8 +16,6 @@
 
 package org.greenrobot.eventbusperf;
 
-import android.content.Context;
-
 import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class Test {
