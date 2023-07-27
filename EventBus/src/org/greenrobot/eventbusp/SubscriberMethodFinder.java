@@ -45,6 +45,17 @@ class SubscriberMethodFinder {
     private static final int POOL_SIZE = 4;
     private static final FindState[] FIND_STATE_POOL = new FindState[POOL_SIZE];
 
+    Method method; // Your method instance
+    Class<?> eventType; // Your event type class
+    ThreadMode threadMode; // Your thread mode
+    int priority; // Your priority
+    boolean sticky; // Your sticky flag
+    SubscriberMethod subscriberMethod = new SubscriberMethod.Builder(method, eventType)
+            .threadMode(threadMode)
+            .priority(priority)
+            .sticky(sticky)
+            .build();
+
     SubscriberMethodFinder(List<SubscriberInfoIndex> subscriberInfoIndexes, boolean strictMethodVerification,
                            boolean ignoreGeneratedIndex) {
         this.subscriberInfoIndexes = subscriberInfoIndexes;
@@ -177,8 +188,7 @@ class SubscriberMethodFinder {
                         Class<?> eventType = parameterTypes[0];
                         if (findState.checkAdd(method, eventType)) {
                             ThreadMode threadMode = subscribeAnnotation.threadMode();
-                            findState.subscriberMethods.add(new SubscriberMethod(method, eventType, threadMode,
-                                    subscribeAnnotation.priority(), subscribeAnnotation.sticky()));
+                            findState.subscriberMethods.add(subscriberMethod);
                         }
                     }
                 } else if (strictMethodVerification && method.isAnnotationPresent(Subscribe.class)) {

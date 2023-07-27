@@ -27,12 +27,48 @@ public class SubscriberMethod {
     /** Used for efficient comparison */
     String methodString;
 
-    public SubscriberMethod(Method method, Class<?> eventType, ThreadMode threadMode, int priority, boolean sticky) {
-        this.method = method;
-        this.threadMode = threadMode;
-        this.eventType = eventType;
-        this.priority = priority;
-        this.sticky = sticky;
+    public SubscriberMethod(Builder builder) {
+        this.method = builder.method;
+        this.threadMode = builder.threadMode;
+        this.eventType = builder.eventType;
+        this.priority = builder.priority;
+        this.sticky = builder.sticky;
+    }
+
+    public static class Builder {
+        private final Method method;
+        private final Class<?> eventType;
+        private ThreadMode threadMode = ThreadMode.POSTING;
+        private int priority = 0;
+        private boolean sticky = false;
+
+        public Builder(Method method, Class<?> eventType) {
+            this.method = method;
+            this.eventType = eventType;
+        }
+
+        public Builder threadMode(ThreadMode threadMode) {
+            this.threadMode = threadMode;
+            return this;
+        }
+
+        public Builder priority(int priority) {
+            this.priority = priority;
+            return this;
+        }
+
+        public Builder sticky(boolean sticky) {
+            this.sticky = sticky;
+            return this;
+        }
+
+        public SubscriberMethod build() {
+            return new SubscriberMethod(this);
+        }
+    }
+
+    public static Builder builder(Method method, Class<?> eventType) {
+        return new Builder(method, eventType);
     }
 
     @Override

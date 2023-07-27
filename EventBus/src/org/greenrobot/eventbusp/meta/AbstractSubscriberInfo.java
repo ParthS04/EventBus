@@ -66,11 +66,22 @@ public abstract class AbstractSubscriberInfo implements SubscriberInfo {
         return createSubscriberMethod(methodName, eventType, threadMode, 0, false);
     }
 
+    Method method; // Your method instance
+    Class<?> eventType; // Your event type class
+    ThreadMode threadMode; // Your thread mode
+    int priority; // Your priority
+    boolean sticky; // Your sticky flag
+    SubscriberMethod subscriberMethod = new SubscriberMethod.Builder(method, eventType)
+            .threadMode(threadMode)
+            .priority(priority)
+            .sticky(sticky)
+            .build();
+
     protected SubscriberMethod createSubscriberMethod(String methodName, Class<?> eventType, ThreadMode threadMode,
                                                       int priority, boolean sticky) {
         try {
             Method method = subscriberClass.getDeclaredMethod(methodName, eventType);
-            return new SubscriberMethod(method, eventType, threadMode, priority, sticky);
+            return subscriberMethod;
         } catch (NoSuchMethodException e) {
             throw new EventBusException("Could not find subscriber method in " + subscriberClass +
                     ". Maybe a missing ProGuard rule?", e);
