@@ -18,9 +18,9 @@ package org.greenrobot.eventbusperf.testsubject;
 
 import android.content.Context;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.eventbusp.EventBus;
+import org.greenrobot.eventbusp.Subscribe;
+import org.greenrobot.eventbusp.ThreadMode;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

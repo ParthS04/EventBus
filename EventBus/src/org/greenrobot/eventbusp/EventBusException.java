@@ -13,37 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.greenrobot.eventbusp;
 
-package org.greenrobot.eventbusperf.testsubject;
+/**
+ * An {@link RuntimeException} thrown in cases something went wrong inside EventBus.
+ * 
+ * @author Markus
+ * 
+ */
+public class EventBusException extends RuntimeException {
 
-import org.greenrobot.eventbusp.Subscribe;
+    private static final long serialVersionUID = -2912559384646531479L;
 
-import org.greenrobot.eventbusperf.TestEvent;
-
-public class SubscribeClassEventBusDefault {
-    private PerfTestEventBus perfTestEventBus;
-
-    public SubscribeClassEventBusDefault(PerfTestEventBus perfTestEventBus) {
-        this.perfTestEventBus = perfTestEventBus;
+    public EventBusException(String detailMessage) {
+        super(detailMessage);
     }
 
-    @Subscribe
-    public void onEvent(TestEvent event) {
-        perfTestEventBus.eventsReceivedCount.incrementAndGet();
+    public EventBusException(Throwable throwable) {
+        super(throwable);
     }
 
-    public void dummy() {
+    public EventBusException(String detailMessage, Throwable throwable) {
+        super(detailMessage, throwable);
     }
 
-    public void dummy2() {
-    }
-
-    public void dummy3() {
-    }
-
-    public void dummy4() {
-    }
-
-    public void dummy5() {
-    }
 }

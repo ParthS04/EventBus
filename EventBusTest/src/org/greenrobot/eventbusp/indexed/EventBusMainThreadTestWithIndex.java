@@ -14,36 +14,15 @@
  * limitations under the License.
  */
 
-package org.greenrobot.eventbusperf.testsubject;
+package org.greenrobot.eventbusp.indexed;
 
-import org.greenrobot.eventbusp.Subscribe;
+import org.junit.Before;
 
-import org.greenrobot.eventbusperf.TestEvent;
+import org.greenrobot.eventbusp.EventBusMainThreadTest;
 
-public class SubscribeClassEventBusDefault {
-    private PerfTestEventBus perfTestEventBus;
-
-    public SubscribeClassEventBusDefault(PerfTestEventBus perfTestEventBus) {
-        this.perfTestEventBus = perfTestEventBus;
-    }
-
-    @Subscribe
-    public void onEvent(TestEvent event) {
-        perfTestEventBus.eventsReceivedCount.incrementAndGet();
-    }
-
-    public void dummy() {
-    }
-
-    public void dummy2() {
-    }
-
-    public void dummy3() {
-    }
-
-    public void dummy4() {
-    }
-
-    public void dummy5() {
+public class EventBusMainThreadTestWithIndex extends EventBusMainThreadTest {
+    @Before
+    public void overwriteEventBus() throws Exception {
+        eventBus = Indexed.build();
     }
 }

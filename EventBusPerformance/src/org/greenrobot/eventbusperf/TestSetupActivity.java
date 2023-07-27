@@ -25,7 +25,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.eventbusp.ThreadMode;
 
 import java.util.ArrayList;
 

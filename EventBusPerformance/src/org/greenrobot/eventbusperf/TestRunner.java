@@ -18,7 +18,7 @@ package org.greenrobot.eventbusperf;
 
 import android.content.Context;
 
-import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbusp.EventBus;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

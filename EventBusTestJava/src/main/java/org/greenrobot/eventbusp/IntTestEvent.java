@@ -14,36 +14,16 @@
  * limitations under the License.
  */
 
-package org.greenrobot.eventbusperf.testsubject;
+/**
+ * Simple event storing an int value. More efficient than Integer because of the its flat hierarchy. 
+ */
+package org.greenrobot.eventbusp;
 
-import org.greenrobot.eventbusp.Subscribe;
+public class IntTestEvent {
+    public final int value;
 
-import org.greenrobot.eventbusperf.TestEvent;
-
-public class SubscribeClassEventBusDefault {
-    private PerfTestEventBus perfTestEventBus;
-
-    public SubscribeClassEventBusDefault(PerfTestEventBus perfTestEventBus) {
-        this.perfTestEventBus = perfTestEventBus;
+    public IntTestEvent(int value) {
+        this.value = value;
     }
 
-    @Subscribe
-    public void onEvent(TestEvent event) {
-        perfTestEventBus.eventsReceivedCount.incrementAndGet();
-    }
-
-    public void dummy() {
-    }
-
-    public void dummy2() {
-    }
-
-    public void dummy3() {
-    }
-
-    public void dummy4() {
-    }
-
-    public void dummy5() {
-    }
 }

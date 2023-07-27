@@ -23,9 +23,9 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.eventbusp.EventBus;
+import org.greenrobot.eventbusp.Subscribe;
+import org.greenrobot.eventbusp.ThreadMode;
 
 /**
  * This activity gets the information from the activity before, sets up the test and starts the test. After it watchs

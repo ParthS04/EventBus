@@ -16,7 +16,7 @@
 
 package org.greenrobot.eventbusperf;
 
-import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.eventbusp.ThreadMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;

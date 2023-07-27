@@ -13,37 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.greenrobot.eventbusp;
 
-package org.greenrobot.eventbusperf.testsubject;
+/**
+ * This Event is posted by EventBus when no subscriber is found for a posted event.
+ * 
+ * @author Markus
+ */
+public final class NoSubscriberEvent {
+    /** The {@link EventBus} instance to with the original event was posted to. */
+    public final EventBus eventBus;
 
-import org.greenrobot.eventbusp.Subscribe;
+    /** The original event that could not be delivered to any subscriber. */
+    public final Object originalEvent;
 
-import org.greenrobot.eventbusperf.TestEvent;
-
-public class SubscribeClassEventBusDefault {
-    private PerfTestEventBus perfTestEventBus;
-
-    public SubscribeClassEventBusDefault(PerfTestEventBus perfTestEventBus) {
-        this.perfTestEventBus = perfTestEventBus;
+    public NoSubscriberEvent(EventBus eventBus, Object originalEvent) {
+        this.eventBus = eventBus;
+        this.originalEvent = originalEvent;
     }
 
-    @Subscribe
-    public void onEvent(TestEvent event) {
-        perfTestEventBus.eventsReceivedCount.incrementAndGet();
-    }
-
-    public void dummy() {
-    }
-
-    public void dummy2() {
-    }
-
-    public void dummy3() {
-    }
-
-    public void dummy4() {
-    }
-
-    public void dummy5() {
-    }
 }
