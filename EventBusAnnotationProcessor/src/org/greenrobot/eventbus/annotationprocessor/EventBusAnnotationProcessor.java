@@ -109,14 +109,7 @@ public class EventBusAnnotationProcessor extends AbstractProcessor {
                 messager.printMessage(Diagnostic.Kind.ERROR,
                         "Unexpected processing state: annotations still available after writing.");
             }
-            collectSubscribers(annotations, env, messager);
-            checkForSubscribersToSkip(messager, indexPackage);
-
-            if (!methodsByClass.isEmpty()) {
-                createInfoIndexFile(index);
-            } else {
-                messager.printMessage(Diagnostic.Kind.WARNING, "No @Subscribe annotations found");
-            }
+            processAnnotations(annotations, env, indexPackage);
             writerRoundDone = true;
         } catch (RuntimeException e) {
             // IntelliJ does not handle exceptions nicely, so log and print a message
@@ -124,6 +117,18 @@ public class EventBusAnnotationProcessor extends AbstractProcessor {
             messager.printMessage(Diagnostic.Kind.ERROR, "Unexpected error in EventBusAnnotationProcessor: " + e);
         }
         return true;
+    }
+
+    private void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment env, String indexPackage) {
+        Messager messager = processingEnv.getMessager();
+        collectSubscribers(annotations, env, messager);
+        checkForSubscribersToSkip(messager, indexPackage);
+
+        if (!methodsByClass.isEmpty()) {
+            createInfoIndexFile(indexPackage);
+        } else {
+            messager.printMessage(Diagnostic.Kind.WARNING, "No @Subscribe annotations found");
+        }
     }
 
     private void collectSubscribers(Set<? extends TypeElement> annotations, RoundEnvironment env, Messager messager) {

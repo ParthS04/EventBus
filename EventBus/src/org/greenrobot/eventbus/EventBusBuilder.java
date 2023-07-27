@@ -40,7 +40,7 @@ public class EventBusBuilder {
     boolean ignoreGeneratedIndex;
     boolean strictMethodVerification;
     ExecutorService executorService = DEFAULT_EXECUTOR_SERVICE;
-    List<Class<?>> skipMethodVerificationForClasses;
+    List<Class<?>> skipClasses;
     List<SubscriberInfoIndex> subscriberInfoIndexes;
     Logger logger;
     MainThreadSupport mainThreadSupport;
@@ -112,11 +112,11 @@ public class EventBusBuilder {
      * exclude subscriber classes from this check. Also disables checks for method modifiers (public, not static nor
      * abstract).
      */
-    public EventBusBuilder addSkipMethodVerificationFor(Class<?> clazz) {
-        if (skipMethodVerificationForClasses == null) {
-            skipMethodVerificationForClasses = new ArrayList<>();
+    public EventBusBuilder SkipMethodVerificationFor(Class<?> clazz) {
+        if (skipClasses == null) {
+            skipClasses = new ArrayList<>();
         }
-        skipMethodVerificationForClasses.add(clazz);
+        skipClasses.add(clazz);
         return this;
     }
 
